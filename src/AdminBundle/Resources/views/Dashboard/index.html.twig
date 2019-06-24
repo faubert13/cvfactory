@@ -1,0 +1,19 @@
+{% extends '@Admin/layout_dashboard.html.twig' %}
+{% block header %}
+{{ parent() }}
+{% endblock %}
+{% block body %}
+    {{ parent() }}
+    {% block left_side_bar %}
+        {{ parent() }}
+    {% endblock %}
+    {% block content %}
+
+    {% endblock %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+

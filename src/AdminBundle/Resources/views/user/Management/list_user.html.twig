@@ -1,0 +1,186 @@
+{% extends '@Admin/layout_dashboard.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('bundles/admin/css/datatables/dataTables.bootstrap.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('bundles/admin/css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block content_header %}
+    <section class="content-header">
+        <h1>Gestion des utilisateurs</h1>
+        <ol class="breadcrumb">
+            {% block breadcrumb %}
+                {{ parent() }}
+                <li class="active">Gestion des utilisateurs</li>
+            {% endblock %}
+        </ol>
+    </section>
+{% endblock %}
+
+{% block body %}
+{#    {{ parent() }}#}
+    {% block left_side_bar %}
+        {{ parent() }}
+    {% endblock %}
+    {% block content %}
+    <div class="box">
+        <div class="box-header">
+            <div class="box-tools">
+                <div class="input-group">
+                    <button type="button" name="lock" class="btn btn-success" onclick="location.href='{{ path('user_new') }}';">
+                        Ajouter un utilisateur
+                    </button>
+                </div>
+            </div>
+        </div><!-- /.box-header -->
+
+        <div class="box-body">
+            <table id="userTable" class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Email</th>
+                    <th class="sorting_asc_disabled sorting_desc_disabled">Statut du compte</th>
+                    <th class="sorting_asc_disabled sorting_desc_disabled"></th>
+                    <th class="sorting_asc_disabled sorting_desc_disabled"></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for user in users %}
+                    {% if not user.isActive %} <tr class="danger"> {% else %}  <tr> {% endif %}
+                    <td>
+                        {% if is_granted('ROLE_SUPER_ADMIN') %}
+                            <a href="{{ path('user_edit', { 'user_id': user.id }) }}">{{ user.lastName }}</a>
+                        {% else %}
+                            {{ user.lastName }}
+                        {% endif %}
+
+                        {% if "ROLE_SUPER_ADMIN" == user.role %}
+                            <span class="label label-warning" style="margin-left: 15px">Super Admin</span>
+                        {% elseif "ROLE_ADMIN" == user.role %}
+                            <span class="label label-primary" style="margin-left: 15px">Admin</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {{ user.firstName }}
+                    </td>
+                    <td>
+                        <a href="#" data-toggle="modal" data-id="{{ user.email }}" data-target="#compose-modal" class="userMailLink">{{ user.email }}</a>
+                    </td>
+                    {# Seul le compte du super admin actif ne peut pas etre désactivé #}
+                    {% if is_granted('ROLE_SUPER_ADMIN') %}
+                        {% if currentUser.id != user.id %}
+                            {% if user.isActive %}
+                                <td>
+{#                                    <button type="button" name="lock" class="btn btn-success btn-xs" onclick="location.href='{{ path('user_manage_status_account', { 'userId': user.id, 'status': 'lock' }) }}';">#}
+{#                                        Activé#}
+{#                                    </button>#}
+                                </td>
+                            {% else %}
+                                <td>
+{#                                    <button type="button" name="unlock" class="btn btn-danger btn-xs" onclick="location.href='{{ path('user_manage_status_account', { 'userId': user.id, 'status': 'unlock' }) }}';">#}
+{#                                        Désactivé#}
+{#                                    </button>#}
+                                </td>
+                            {% endif %}
+                        {% else %}
+                            {% if user.isActive %}
+                                <td><span class="label label-success">Activé</span></td>
+                            {% else %}
+                                <td><span class="label label-danger">Désactivé</span></td>
+                            {% endif %}
+                        {% endif %}
+                    {% else %}
+                        {% if user.isActive %}
+                            <td>
+                                <button type="button" name="lock" class="btn btn-success btn-xs">
+                                    Activé
+                                </button>
+                            </td>
+                        {% else %}
+                            <td>
+                                <button type="button" name="unlock" class="btn btn-danger btn-xs">
+                                    Désactivé
+                                </button>
+                            </td>
+                        {% endif %}
+                    {% endif %}
+                    <td>
+                        {% if is_granted('ROLE_SUPER_ADMIN') %}
+                            <a href="{{ path('user_edit', { 'user_id': user.id }) }}"><span class="glyphicon glyphicon-cog"></span></a>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if currentUser.id != user.id and is_granted('ROLE_SUPER_ADMIN') %}
+                            <a href="{{ path('user_confirm_delete', { 'user_id': user.id }) }}"><span style="color:red" class="glyphicon glyphicon-remove"></span></a>
+                        {% endif %}
+                    </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div><!-- /.box-body -->
+    </div><!-- /.box -->
+    {% endblock %}
+
+    {# Inclusion du template d'envoi de mail #}
+{#    {% include 'EliophotBackBundle:User/Management:mail_composer.html.twig' %}#}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <!-- DATA TABES SCRIPT -->
+    <script src="{{ asset('bundles/admin/js/plugins/datatables/jquery.dataTables.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bundles/admin/js/plugins/datatables/dataTables.bootstrap.min.js') }}" type="text/javascript"></script>
+    <!-- Mail -->
+    <script src="{{ asset('bundles/admin/js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $(function() {
+            /*Gestion du sub menu*/
+            $('#dashboard_menu').removeClass('active');
+            $('#super_admin_menu').addClass('active');
+            $('#super_admin_menu .treeview-menu').css('display', 'block');
+            $('#super_admin_menu .pitifleche').removeClass('fa-angle-left').addClass('fa-angle-down');
+            $('#super_admin_user_menu').addClass('active');
+            /****/
+
+            $("#userTable").dataTable({
+                "bPaginate": true,
+                "bLengthChange": true,
+                "bFilter": true,
+                "bSort": true,
+                "bInfo": true,
+                "bAutoWidth": true,
+                "iDisplayLength": 25,
+                "aLengthMenu": [[25, 50, 100, -1], [25, 50, 100, "Tout"]],
+                "oLanguage": {
+                    "sZeroRecords": "Aucun résultat",
+                    "sEmptyTable": "Aucune page n'a encore été crée dans cette langue",
+                    "sSearch": "",
+                    "sSearchPlaceholder" : "Rechercher...",
+                    "sInfo": "_START_ à _END_ sur _TOTAL_ résultats",
+                    "sInfoEmpty": "0 résultat",
+                    "sInfoFiltered": "(sur un total de _MAX_ )",
+                    "sLengthMenu": "_MENU_",
+                    "sLoadingRecords": "Chargement...",
+                    "sPrevious": "Précédent",
+                    "sNext": "Suivant"
+                },
+                "columnDefs": [{ "searchable": false, "targets": [ 3, 4, 5 ] }]
+            });
+        });
+
+        //Initialize WYSIHTML5 - text editor
+        $("#email_message").wysihtml5();
+
+        //Le champ "to" du mail est rempli avec la valeur de l'email qui a été cliqué
+        $(document).on("click", ".userMailLink", function () {
+            var userMail = $(this).data('id');
+            $('input[name="email_to"]').val( userMail );
+        });
+    </script>
+{% endblock %}

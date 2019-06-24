@@ -1,23 +1,16 @@
 core:
-    resource: "@CoreBundle/Controller/"
-    type:     annotation
+    resource: "@CoreBundle/Resources/config/routing.yml"
     prefix:   /
 
 front:
     resource: "@FrontBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
-user:
-    resource: "@UserBundle/Controller/"
-    type:     annotation
     prefix:   /
 
 admin:
-    resource: "@AdminBundle/Controller/"
-    type:     annotation
+    resource: "@AdminBundle/Resources/config/routing.yml"
     prefix:   /
 
-app:
-    resource: '@AppBundle/Controller/'
-    type: annotation
+easy_admin_bundle:
+    resource: "@EasyAdminBundle/Controller/AdminController.php"
+    type:     annotation
+    prefix:   /administration

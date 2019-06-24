@@ -1,0 +1,149 @@
+{% extends '::base_back.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('bundles/admin/js/plugins/chosen/chosen.min.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block header %}
+    <header class="header">
+        <a href="{{ path('AdminBundle_home') }}" class="logo">
+            <!-- Add the class icon to your logo image or logo icon to add the margining -->
+            <img src="{{ asset('bundles/eliophotback/img/custom/logo_eliophot.png') }}" alt="CV Factory" />
+        </a>
+
+        <nav class="navbar navbar-static-top" role="navigation">
+            <!-- Sidebar toggle button-->
+            <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <div class="navbar-right">
+                <div class="actions_site">
+{#                    {{ render(controller('EliophotBackBundle:SiteSwitcher:listSite', {'userId' : app.user.getId})) }}#}
+                    <div class="clear"></div>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="glyphicon glyphicon-user"></i>
+                            <span>{{ app.user.firstName }} <i class="caret"></i></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- User image -->
+                            <li class="user-header bg-black">
+                                <img src="{{ asset(app.user.getWebPath) }}" class="img-circle" alt="Avatar" />
+                                <p>
+                                    {{ app.user.firstName }}  {% if app.user.job is not null %} - {{ app.user.job }} {% endif %}
+                                </p>
+                            </li>
+                            <!-- Menu Body -->
+                            {#<li class="user-body">
+                                <div class="col-xs-4 text-center">
+                                    <a href="#">Friends</a>
+                                </div>
+                            </li>#}
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                                <div class="pull-left">
+{#                                    <a href="{{ path('my_account', { 'userId': app.user.id }) }}" class="btn btn-default btn-flat">Mon profil</a>#}
+                                </div>
+                                <div class="pull-right">
+                                    <a href="{{ path("_admin_logout") }}" class="btn btn-default btn-flat">Se déconnecter</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+{% endblock %}
+
+{% block body %}
+        <!-- Sidebar Holder -->
+        {% block left_side_bar %}
+            <aside class="left-side sidebar-offcanvas">
+                <section class="sidebar">
+                    <!-- Sidebar user panel -->
+                    <div class="user-panel">
+                        <div class="pull-left image">
+                            <img src="{{ asset(app.user.getWebPath) }}" class="img-circle" alt="Avatar" />
+                        </div>
+                        <div class="pull-left info">
+                            <p>Bonjour {{ app.user.firstName }}</p>
+
+                            <a href="#"><i class="fa fa-circle text-success"></i> En ligne</a>
+                        </div>
+                    </div>
+
+                    <ul class="sidebar-menu">
+                        <li id="dashboard_menu" class="active">
+                            <a href="{{ path('AdminBundle_home') }}">
+                                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                            </a>
+                        </li>
+                        {% if is_granted('ROLE_SUPER_ADMIN') %}
+                        <li id="super_admin_menu" class="treeview">
+                            <a href="#">
+                                <i style="color:red" class="fa fa-gears"></i> <span>Admin</span>
+                                <i class="fa fa-angle-left pull-right pitifleche"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                {% if is_granted('ROLE_SUPER_ADMIN') %}
+
+                                {% endif %}
+                            </ul>
+                        </li>
+                        {% endif %}
+                        {% if is_granted('ROLE_SUPER_ADMIN') %}
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-th"></i> <span>Banque de CV</span>
+                                </a>
+                            </li>
+                        {% endif %}
+                        {% if is_granted('ROLE_CUSTOMER') %}
+                                <li>
+                                    <a href="{{ path('my_cv_all', { userId: app.user.id }) }}">
+                                        <i class="fa fa-th"></i> <span>Mes CV</span>
+                                    </a>
+                                </li>
+                        {% endif %}
+                    </ul>
+                </section>
+            </aside>
+
+        {% endblock %}
+        <aside class="right-side">
+            {% block content_header %}
+                <section class="content-header">
+                    <h1>
+                        Dashboard
+                    </h1>
+                    <ol class="breadcrumb">
+                        {% block breadcrumb %}
+                            <li><a href={{ path('AdminBundle_home') }}><i class="fa fa-dashboard"></i></a></li>
+                        {% endblock %}
+                    </ol>
+                </section>
+            {% endblock %}
+
+            <section class="content">
+                <img src="#" alt="scroll to top" class="scrollToTop">
+
+                {% block content %}
+                {% endblock %}
+            </section>
+        </aside>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+
+    </script>
+{% endblock %}

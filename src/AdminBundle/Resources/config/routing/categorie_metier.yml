@@ -1,0 +1,23 @@
+categorie_metier_index:
+  path: /
+  defaults: { _controller: "AdminBundle:CategorieMetier:indexCategorieMetier" }
+
+categorie_metier_edit:
+  path: /{categorie_metierId}/edit
+  defaults: { _controller: "AdminBundle:CategorieMetier:editCategorieMetier" }
+
+categorie_metier_update:
+  path: /{categorie_metierId}/update
+  defaults: { _controller: "AdminBundle:CategorieMetier:updateCategorieMetier" }
+
+categorie_metier_new:
+  path: /new
+  defaults: { _controller: "AdminBundle:CategorieMetier:newCategorieMetier" }
+
+categorie_metier_create:
+  path: /create
+  defaults: { _controller: "AdminBundle:CategorieMetier:createCategorieMetier" }
+
+categorie_metier_delete:
+  path: /{categorie_metierId}/delete
+  defaults: { _controller: "AdminBundle:CategorieMetier:deleteCategorieMetier" }

@@ -1,0 +1,23 @@
+metier_index:
+  path: /
+  defaults: { _controller: "AdminBundle:Metier:indexMetier" }
+
+metier_edit:
+  path: /{metierId}/edit
+  defaults: { _controller: "AdminBundle:Metier:editMetier" }
+
+metier_update:
+  path: /{metierId}/update
+  defaults: { _controller: "AdminBundle:Metier:updateMetier" }
+
+metier_new:
+  path: /new
+  defaults: { _controller: "AdminBundle:Metier:newMetier" }
+
+metier_create:
+  path: /create
+  defaults: { _controller: "AdminBundle:Metier:createMetier" }
+
+metier_delete:
+  path: /{metierId}/delete
+  defaults: { _controller: "AdminBundle:Metier:deleteMetier" }

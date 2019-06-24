@@ -1,0 +1,24 @@
+user_list:
+  path: /admin/dashboard/secured/user/
+  defaults: { _controller: "AdminBundle:User:indexUserList" }
+
+user_new:
+  path: /admin/dashboard/secured/user/new
+  defaults: { _controller: "AdminBundle:User:newUser" }
+
+user_edit:
+  path: /admin/dashboard/secured/user/{user_id}/edit
+  defaults: { _controller: "AdminBundle:User.editUser" }
+
+user_update:
+  path: /admin/dashboard/secured/user/{user_id}/update
+  defaults: { _controller: "AdminBundle:User.updateUser" }
+
+user_confirm_delete:
+  path: /admin/dashboard/super_secured/user/{user_id}/confirm_delete
+  defaults: { _controller: "AdminBundle:User:confirmDeleteUser" }
+
+user_delete:
+  path: /admin/dashboard/super_secured/user/{user_id}/delete
+  defaults: { _controller: "AdminBundle:User:deleteUser" }
+  methods: POST

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %} CV Factory - Dashboard {% endblock %}</title>
+        <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+        {% block stylesheets %}
+            <!-- bootstrap 3.0.2 -->
+            <link href="{{ asset('bundles/admin/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+            <!-- feuille de style pour jquery ui -->
+            <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+            <!-- font Awesome -->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+            <!-- Ionicons -->
+            <link href="{{ asset('bundles/admin/css/ionicons.min.css') }}" rel="stylesheet" type="text/css" />
+            <!-- Morris chart -->
+            <link href="{{ asset('bundles/admin/css/morris/morris.css') }}" rel="stylesheet" type="text/css" />
+            <!-- jvectormap -->
+            <link href="{{ asset('bundles/admin/css/jvectormap/jquery-jvectormap-1.2.2.css') }}" rel="stylesheet" type="text/css" />
+            <!-- fullCalendar -->
+            <link href="{{ asset('bundles/admin/css/fullcalendar/fullcalendar.css') }}" rel="stylesheet" type="text/css" />
+            <!-- Daterange picker -->
+            <link href="{{ asset('bundles/admin/css/daterangepicker/daterangepicker-bs3.css') }}" rel="stylesheet" type="text/css" />
+            <!-- bootstrap wysihtml5 - text editor -->
+            <link href="{{ asset('bundles/admin/css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}" rel="stylesheet" type="text/css" />
+            <!-- Theme style -->
+            <link href="{{ asset('bundles/admin/css/AdminLTE.css') }}" rel="stylesheet" type="text/css" />
+            <!-- Feuille de style custom pour l'api -->
+            <link href="{{ asset('bundles/admin/css/custom_baseapi.css') }}" rel="stylesheet" type="text/css" />
+            <!-- Our Custom CSS -->
+            <link rel="stylesheet" href="{{ asset('bundles/admin/css/style5.css') }}">
+        {% endblock %}
+
+        {% block javascripts_head %}
+            <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+            <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+            <!--[if lt IE 9]>
+
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+            <![endif]-->
+        {% endblock %}
+    </head>
+
+    <body class="skin-black wysihtml5-supported pace-done fixed">
+        {% block header %}
+
+        {% endblock %}
+        <div class="wrapper row-offcanvas row-offcanvas-left">
+            {% block body %}
+                {% block left_side_bar %}
+
+                {% endblock %}
+                {% block content %}
+
+                {% endblock %}
+            {% endblock %}
+        </div>
+        {% block javasripts %}
+
+            <!-- jQuery CDN - Slim version (=without AJAX) -->
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+            <!-- Popper.JS -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+            <!-- Bootstrap JS -->
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+{#            <script type="text/javascript">#}
+{#                $(document).ready(function () {#}
+{#                    $('#sidebarCollapse').on('click', function () {#}
+{#                        $('#sidebar').toggleClass('active');#}
+{#                        $(this).toggleClass('active');#}
+{#                    });#}
+{#                });#}
+{#            </script>#}
+        {% endblock %}
+    </body>
+</html>

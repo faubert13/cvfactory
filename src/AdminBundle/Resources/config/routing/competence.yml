@@ -1,0 +1,23 @@
+competence_index:
+  path: /
+  defaults: { _controller: "AdminBundle:Competence:indexCompetence" }
+
+competence_edit:
+  path: /{competenceId}/edit
+  defaults: { _controller: "AdminBundle:Competence:editCompetence" }
+
+competence_update:
+  path: /{competenceId}/update
+  defaults: { _controller: "AdminBundle:Competence:updateCompetence" }
+
+competence_new:
+  path: /new
+  defaults: { _controller: "AdminBundle:Competence:newCompetence" }
+
+competence_create:
+  path: /create
+  defaults: { _controller: "AdminBundle:Competence:createCompetence" }
+
+competence_delete:
+  path: /{competenceId}/delete
+  defaults: { _controller: "AdminBundle:Competence:deleteCompetence" }

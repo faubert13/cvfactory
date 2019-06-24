@@ -1,0 +1,23 @@
+loisirs_index:
+  path: /
+  defaults: { _controller: "AdminBundle:Loisirs:indexLoisirs" }
+
+loisirs_edit:
+  path: /{loisirsId}/edit
+  defaults: { _controller: "AdminBundle:Loisirs:editLoisirs" }
+
+loisirs_update:
+  path: /{loisirsId}/update
+  defaults: { _controller: "AdminBundle:Loisirs:updateLoisirs" }
+
+loisirs_new:
+  path: /new
+  defaults: { _controller: "AdminBundle:Loisirs:newLoisirs" }
+
+loisirs_create:
+  path: /create
+  defaults: { _controller: "AdminBundle:Loisirs:createLoisirs" }
+
+loisirs_delete:
+  path: /{loisirsId}/delete
+  defaults: { _controller: "AdminBundle:Loisirs:deleteLoisirs" }

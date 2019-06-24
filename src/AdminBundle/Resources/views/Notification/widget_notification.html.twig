@@ -1,0 +1,24 @@
+<!-- Notifications: style can be found in dropdown.less -->
+<li class="dropdown notifications-menu">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <i class="fa fa-bell-o"></i>
+        <span class="label label-warning"></span>
+    </a>
+    <ul class="dropdown-menu">
+        <li class="header">Vous avez  notification(s)</li>
+        <li>
+            <ul class="menu">
+{#                {% for formId,form in formWithoutAction %}#}
+{#                    <li>#}
+{#                        <a href="{{ path("interface_form_edit", {'interfaceFormId' : formId}) }}">#}
+{#                            <i class="fa fa-warning warning"></i>Le formulaire "{{form }}" n'a pas d'action#}
+{#                        </a>#}
+{#                    </li>#}
+{#                {% endfor %}#}
+            </ul>
+        </li>
+        {% if is_granted('ROLE_ADMIN') %}
+{#            <li class="footer"><a href="{{ path('notification_index') }}">Tout voir</a></li>#}
+        {% endif %}
+    </ul>
+</li>

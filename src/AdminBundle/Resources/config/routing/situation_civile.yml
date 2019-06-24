@@ -1,0 +1,23 @@
+situation_civile_index:
+  path: /
+  defaults: { _controller: "AdminBundle:SituationCivile:indexSituationCivile" }
+
+situation_civile_edit:
+  path: /{situation_civileId}/edit
+  defaults: { _controller: "AdminBundle:SituationCivile:editSituationCivile" }
+
+situation_civile_update:
+  path: /{situation_civileId}/update
+  defaults: { _controller: "AdminBundle:SituationCivile:updateSituationCivile" }
+
+situation_civile_new:
+  path: /new
+  defaults: { _controller: "AdminBundle:SituationCivile:newSituationCivile" }
+
+situation_civile_create:
+  path: /create
+  defaults: { _controller: "AdminBundle:SituationCivile:createSituationCivile" }
+
+situation_civile_delete:
+  path: /{situation_civileId}/delete
+  defaults: { _controller: "AdminBundle:SituationCivile:deleteSituationCivile" }

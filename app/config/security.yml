@@ -1,43 +1,46 @@
-# To get started with security, check out the documentation:
-# https://symfony.com/doc/current/security.html
 security:
-    encoders:
-        AppBundle\Entity\User: sha512
+    session_fixation_strategy: migrate
+    role_hierarchy:
+        ROLE_SUPER_ADMIN : [ROLE_ADMIN]
+        ROLE_ADMIN:    [ROLE_CUSTOMER]
+        ROLE_CUSTOMER:
+        ROLE_USER:
 
-    # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
-        database_users:
-            entity: { class: UserBundle:User, property: username }
+        main:
+            entity: { class: CoreBundle\Entity\User, property: email }
+
+    encoders:
+        CoreBundle\Entity\User: sha512
 
     firewalls:
-        # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
-        main:
-            pattern: ^/
-
+        login:
+            pattern: ^/login$
+            security: false
             anonymous: true
 
+        secured_area:
+            pattern: ^/admin
             form_login:
-                check_path: security_login_check
-                login_path: security_login_form
-                csrf_provider: security.csrf.token_manager
-                default_target_path: user_dashboard
+                login_path: _admin_login
+                check_path: _security_check
+                default_target_path: AdminBundle_home
                 always_use_default_target_path: true
-            
             logout:
-                path: security_logout
-                target: homepage
+                path: _admin_logout
+                target: _admin_login
+            remember_me:
+                secret:   '%kernel.secret%'
+                lifetime: 604800
+                path: _admin_login
+                domain: ~
 
     access_control:
-        - { path: ^/account/signup, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/account, roles: ROLE_USER }
-            # activate different ways to authenticate
-
-            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
-            #http_basic: ~
-
-            # https://symfony.com/doc/current/security/form_login_setup.html
-            #form_login: ~
+      - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+      - { path: /super_secured, roles: [ROLE_SUPER_ADMIN] }
+      - { path: /secured, roles: [ROLE_ADMIN] }
+      - { path: ^/admin, roles: [ROLE_CUSTOMER, ROLE_ADMIN, ROLE_SUPER_ADMIN]}

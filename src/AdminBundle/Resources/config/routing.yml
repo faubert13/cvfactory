@@ -1,0 +1,55 @@
+# Pages de login et d'accueil du dashboard
+_admin_secured:
+  resource: "@AdminBundle/Controller/SecureController.php"
+  type:     annotation
+
+AdminBundle_home:
+  path: /admin
+  defaults: { _controller: "AdminBundle:Dashboard:index"}
+
+# Personnalisation du profil de l'utilisateur
+AdminBundle_my_account:
+  resource: "@AdminBundle/Resources/config/routing/my_account.yml"
+  prefix:   /admin/dashboard/my_account
+
+# Gestion des utilisateurs de la plateforme (role admin)
+AdminBundle_user:
+  resource: "@AdminBundle/Resources/config/routing/user.yml"
+
+# Gestion des langues de la plateforme (role admin)
+AdminBundle_langue:
+  resource: "@AdminBundle/Resources/config/routing/langue.yml"
+  prefix:   /admin/dashboard/super_secured/langue
+
+# Gestion des competences (role admin)
+AdminBundle_competence:
+  resource: "@AdminBundle/Resources/config/routing/competence.yml"
+  prefix:   /admin/dashboard/secured/competence
+
+AdminBundle_cv:
+  resource: "@AdminBundle/Resources/config/routing/cv.yml"
+  prefix:   /admin/dashboard/cv
+
+AdminBundle_experience:
+  resource: "@AdminBundle/Resources/config/routing/experience.yml"
+  prefix:   /admin/dashboard/secured/experience
+
+AdminBundle_loisir:
+  resource: "@AdminBundle/Resources/config/routing/loisir.yml"
+  prefix:   /admin/dashboard/secured/loisir
+
+AdminBundle_metier:
+  resource: "@AdminBundle/Resources/config/routing/metier.yml"
+  prefix:   /admin/dashboard/secured/metier
+
+AdminBundle_categorie_metier:
+  resource: "@AdminBundle/Resources/config/routing/categorie_metier.yml"
+  prefix:   /admin/dashboard/secured/categorie_metier
+
+AdminBundle_competence_niveau:
+  resource: "@AdminBundle/Resources/config/routing/competence_niveau.yml"
+  prefix:   /admin/dashboard/secured/competence_niveau
+
+AdminBundle_situation_civile:
+  resource: "@AdminBundle/Resources/config/routing/situation_civile.yml"
+  prefix:   /admin/dashboard/secured/situation_civile

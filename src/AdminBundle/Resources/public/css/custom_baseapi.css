@@ -1,0 +1,57 @@
+.actions_site {
+    position: relative;
+    float: left;
+    line-height: 50px;
+}
+.actions_site .text {
+    color: #000;
+    font-size: 18px;
+    float: left;
+}
+.actions_site #select_site, #select_environment, #cacheClearForm{
+    float: left;
+}
+.actions_site #select_environment{
+    margin-left: 15px;
+}
+#cacheClearer{
+    margin: 0 20px;
+}
+#login .error_login {
+    display: block;
+    text-align: center;
+}
+.avatar_myaccount {
+    border: 1px solid #000000;
+}
+/*checkbox icheck*/
+.icheckbox_minimal {
+    border: 1px solid #000000;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+.scrollToTop {
+    position: fixed;
+    right: 10px;
+    top: 50%;
+    cursor: pointer;
+    display: none;
+    z-index: 15;
+}
+
+
+/*MEDIA QUERIES*/
+@media (max-width: 992px) {
+    .avatar_myaccount {
+        margin: 20px 0 0 0;
+    }
+    .scrollToTop {
+        display: none !important;
+    }
+}
+@media (max-width: 767px) {
+    .actions_site {
+        float: right;
+    }
+}

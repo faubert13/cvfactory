@@ -1,0 +1,23 @@
+competence_niveau_index:
+  path: /
+  defaults: { _controller: "AdminBundle:CompetenceNiveau:indexCompetenceNiveau" }
+
+competence_niveau_edit:
+  path: /{competence_niveauId}/edit
+  defaults: { _controller: "AdminBundle:CompetenceNiveau:editCompetenceNiveau" }
+
+competence_niveau_update:
+  path: /{competence_niveauId}/update
+  defaults: { _controller: "AdminBundle:CompetenceNiveau:updateCompetenceNiveau" }
+
+competence_niveau_new:
+  path: /new
+  defaults: { _controller: "AdminBundle:CompetenceNiveau:newCompetenceNiveau" }
+
+competence_niveau_create:
+  path: /create
+  defaults: { _controller: "AdminBundle:CompetenceNiveau:createCompetenceNiveau" }
+
+competence_niveau_delete:
+  path: /{competence_niveauId}/delete
+  defaults: { _controller: "AdminBundle:CompetenceNiveau:deleteCompetenceNiveau" }

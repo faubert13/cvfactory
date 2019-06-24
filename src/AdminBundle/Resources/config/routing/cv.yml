@@ -1,0 +1,27 @@
+cv_index:
+  path: /
+  defaults: { _controller: "AdminBundle:Cv:indexCv" }
+
+cv_edit:
+  path: /{cvId}/edit
+  defaults: { _controller: "AdminBundle:Cv:editCv" }
+
+cv_update:
+  path: /{cvId}/update
+  defaults: { _controller: "AdminBundle:Cv:updateCv" }
+
+cv_new:
+  path: /cv/new
+  defaults: { _controller: "AdminBundle:Cv:newCv" }
+
+cv_create:
+  path: /cv/create
+  defaults: { _controller: "AdminBundle:Cv:createCv" }
+
+cv_delete:
+  path: /{cvId}/delete
+  defaults: { _controller: "AdminBundle:Cv:deleteCv" }
+
+my_cv_all:
+  path: /{userId}/cv/all
+  defaults: { _controller: "AdminBundle:Cv:findAllCvByUser" }

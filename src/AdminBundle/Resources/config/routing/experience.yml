@@ -1,0 +1,23 @@
+experience_index:
+  path: /
+  defaults: { _controller: "AdminBundle:Experience:indexExperience" }
+
+experience_edit:
+  path: /{experienceId}/edit
+  defaults: { _controller: "AdminBundle:Experience:editExperience" }
+
+experience_update:
+  path: /{experienceId}/update
+  defaults: { _controller: "AdminBundle:Experience:updateExperience" }
+
+experience_new:
+  path: /new
+  defaults: { _controller: "AdminBundle:Experience:newExperience" }
+
+experience_create:
+  path: /create
+  defaults: { _controller: "AdminBundle:Experience:createExperience" }
+
+experience_delete:
+  path: /{experienceId}/delete
+  defaults: { _controller: "AdminBundle:Experience:deleteExperience" }

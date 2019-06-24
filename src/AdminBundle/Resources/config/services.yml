@@ -1,0 +1,13 @@
+services:
+    cv_repository:
+      class: Doctrine\ORM\EntityRepository
+      factory: ['@doctrine.orm.default_entity_manager', getRepository ]
+      arguments:
+        - CoreBundle\Entity\Cv
+
+
+    cv_manager:
+        class: AdminBundle\Manager\CvManager
+        arguments:
+          - '@service_container'
+          - cv_repository

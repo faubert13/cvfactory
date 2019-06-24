@@ -1,0 +1,23 @@
+langue_index:
+  path: /
+  defaults: { _controller: "AdminBundle:Langue:indexLangue" }
+
+langue_edit:
+  path: /{langueId}/edit
+  defaults: { _controller: "AdminBundle:Langue:editLangue" }
+
+langue_update:
+  path: /{langueId}/update
+  defaults: { _controller: "AdminBundle:Langue:updateLangue" }
+
+langue_new:
+  path: /new
+  defaults: { _controller: "AdminBundle:Langue:newLangue" }
+
+langue_create:
+  path: /create
+  defaults: { _controller: "AdminBundle:Langue:createLangue" }
+
+langue_delete:
+  path: /{langueId}/delete
+  defaults: { _controller: "AdminBundle:Langue:deleteLangue" }
